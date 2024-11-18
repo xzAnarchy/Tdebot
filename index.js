@@ -1,7 +1,12 @@
-import { config } from 'dotenv';
-config(); // Cargar las variables del archivo .env
+require('dotenv').config();
+// import { config } from 'dotenv'; config(); // Cargar las variables del archivo .env
 
-import { Client, GatewayIntentBits, PermissionsBitField } from 'discord.js';
+const {
+  Client,
+  GatewayIntentBits,
+  PermissionsBitField,
+} = require('discord.js');
+// import { Client, GatewayIntentBits, PermissionsBitField } from 'discord.js';
 
 const BOT_TOKEN = process.env.BOT_TOKEN; // Token desde variables de entorno
 const CHANNEL_ID = process.env.CHANNEL_ID; // ID del canal desde variables de entorno
@@ -16,8 +21,6 @@ const client = new Client({
     GatewayIntentBits.GuildMessageReactions,
   ],
 });
-
-// (Resto del código permanece igual)
 
 client.once('ready', async () => {
   console.log(`Bot iniciado como ${client.user.tag}`);
