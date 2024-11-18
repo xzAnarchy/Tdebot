@@ -4,7 +4,7 @@ config(); // Cargar las variables del archivo .env
 import { Client, GatewayIntentBits, PermissionsBitField } from 'discord.js';
 
 const BOT_TOKEN = process.env.BOT_TOKEN; // Token desde variables de entorno
-const CHANNEL_ID = process.env.CHANNEL_ID; // ID del canal desde variables de entorno
+const TICKET_CHANNEL_ID = process.env.CHANNEL_ID; // ID del canal desde variables de entorno
 const TICKET_EMOJI = '📩';
 const CLOSE_EMOJI = '🔒';
 
@@ -21,7 +21,7 @@ client.once('ready', async () => {
   console.log(`Bot iniciado como ${client.user.tag}`);
 
   // Obtener el canal donde se enviará el mensaje inicial
-  const channel = await client.channels.fetch(CHANNEL_ID);
+  const channel = await client.channels.fetch(TICKET_CHANNEL_ID);
   if (!channel || channel.type !== 0) {
     console.error('El canal no existe o no es un canal de texto.');
     return;
@@ -52,7 +52,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
     // Eliminar la reacción del usuario
     if (
       message.id === reaction.message.id &&
-      message.channel.id === CHANNEL_ID
+      message.channel.id === TICKET_CHANNEL_ID
     ) {
       await reaction.users.remove(user.id);
     }
