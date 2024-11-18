@@ -1,12 +1,7 @@
-require('dotenv').config();
-// import { config } from 'dotenv'; config(); // Cargar las variables del archivo .env
+import { config } from 'dotenv';
+config(); // Cargar las variables del archivo .env
 
-const {
-  Client,
-  GatewayIntentBits,
-  PermissionsBitField,
-} = require('discord.js');
-// import { Client, GatewayIntentBits, PermissionsBitField } from 'discord.js';
+import { Client, GatewayIntentBits, PermissionsBitField } from 'discord.js';
 
 const BOT_TOKEN = process.env.BOT_TOKEN; // Token desde variables de entorno
 const CHANNEL_ID = process.env.CHANNEL_ID; // ID del canal desde variables de entorno
@@ -137,6 +132,5 @@ client.on('messageReactionAdd', async (reaction, user) => {
     console.error('Error al cerrar el ticket:', error);
   }
 });
-
 // Iniciar el bot
 client.login(BOT_TOKEN);
